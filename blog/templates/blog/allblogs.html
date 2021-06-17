@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
   <head>
     {% load staticfiles %}
     <meta charset="utf-8">
@@ -8,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.83.1">
-    <title>DAVACOMM</title>
+    <title>DAVACOMM's Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
 
@@ -59,7 +58,7 @@
         <div class="navbar-nav ms-auto">
           <a class="nav-link" aria-current="page" href="https://twitter.com/yahoodia">Twitter</a>
           <a class="nav-link" href="{% static 'David_Hurtado_Resume.pdf' %}">Resume</a>
-          <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
+          <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
         </div>
       </div>
     </div>
@@ -67,39 +66,22 @@
 </header>
 
 <main>
-
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">DAVACOMM</h1>
-        <p class="lead text-muted">Business to Business, System to System, X to X, Our passion is for smooth business transactions</p>
-        <p>
-          <a href="mailto:dhurtado@comcast.net" class="btn btn-primary my-2">Email me</a>
-        </p>
-        <img src="{% static 'dava.png' %}" height="300"/>
-      </div>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-        {% for job in jobs.all %}
-        <div class="col">
-          <div class="card shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}" />
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
+  <div class="container">
+  <h1 class="text-center pt-3">Welcome to David's Blog</h1>
+  <br />
+  <br />
+  <h2>Latest Posts</h2>
+  <hr />
+ <!-- super important loops -->
+  {% for blog in blogs.all %}
+  <a href = "{% url 'detail' blog.id %}"><h3> {{ blog.title }} </h3></a>
+  {{ blog.pub_date_pretty }}
+  <br />
+  <img class="img-fluid" src="{{ blog.image.url }}" height=200 width=200/>
+  <br />
+  <p>{{ blog.summary }}</p>
+  {% endfor %}
   </div>
-
 </main>
 
 <footer class="text-muted py-5">
